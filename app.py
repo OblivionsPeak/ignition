@@ -32,6 +32,11 @@ def app_dir():
 
 CONFIG_PATH = app_dir() / 'ignition.json'
 
+def resource(name):
+    """Bundled data file — PyInstaller unpacks these to _MEIPASS, not app_dir."""
+    base = getattr(sys, '_MEIPASS', None)
+    return Path(base) / name if base else Path(__file__).parent / name
+
 # ---------------------------------------------------------------- theme
 
 BG = '#15171c'
@@ -190,6 +195,10 @@ class Ignition:
         self.root.configure(bg=BG)
         self.root.geometry('820x620')
         self.root.minsize(720, 540)
+        try:
+            self.root.iconbitmap(default=str(resource('icon.ico')))
+        except Exception:
+            pass   # missing or unreadable icon is never worth failing over
 
         self._build()
         self.root.after(80, self._pump)

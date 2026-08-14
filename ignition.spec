@@ -5,7 +5,7 @@ a = Analysis(
     ['app.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('icon.ico', '.')],   # also loaded at runtime for the window icon
     # win32com is imported lazily inside detect.py so PyInstaller can't see it.
     # Bundling it keeps the fast shortcut-resolution path in the frozen build;
     # without it everything still works via the PowerShell fallback.
@@ -38,4 +38,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='icon.ico',
 )

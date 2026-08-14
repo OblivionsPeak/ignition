@@ -2,3 +2,6 @@ __pycache__/
 build/
 dist/
 ignition.json
+_sheet.png
+_zoom.png
+_*.png
