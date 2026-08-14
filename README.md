@@ -1,3 +1,5 @@
+<img src="icon.png" width="96" align="right" alt="Ignition">
+
 # Ignition
 
 Launch your whole sim racing stack with one button.
@@ -71,6 +73,12 @@ shouldn't need to touch it. Copying it to another machine carries your whole lis
 assuming the same install paths.
 
 CLI: `--rescan` ignores the saved list and re-detects from scratch.
+
+## Icon
+
+`python make_icon.py` regenerates `icon.ico` and `icon.png`. It builds two masters — the
+full engine-start button above 24px, and a red tile with a fattened bolt at or below it,
+because the button's rim and gradients turn to a smudge once downsampled that far.
 
 ## Notes
 
