@@ -40,15 +40,20 @@ Double-click a row to open it.
 
 ## What it detects automatically
 
-CrewChief, Trading Paints, SimPro Manager, SimHub, Garage 61, Racelab, iOverlay, VRS
-DirectForce Pro, Z1 Dashboard, Sim Racing Studio, Discord, iRacing — plus
+CrewChief, Trading Paints, SimPro Manager 3, SimPro Manager 2, SimHub, Garage 61, Racelab,
+iOverlay, VRS DirectForce Pro, Z1 Dashboard, Sim Racing Studio, Discord, iRacing — plus
 [Cold Tires](https://github.com/OblivionsPeak/cold-tires) and
 [Grid Check](https://github.com/OblivionsPeak/grid-check).
 
 Detection tries three things in order: the registry's installed-programs list, Start Menu
 and Desktop shortcuts, then known install paths. The shortcut pass is the one that carries
-it — plenty of these ship under an exe name nobody would guess (SimPro Manager is
-`simpro.exe`, Garage 61 is `garage61-launcher.exe`), and a shortcut points at the truth.
+it — plenty of these ship under an exe name nobody would guess (SimPro Manager 3 runs as
+`simdaemon.exe` plus `simpro3.exe`, Garage 61 is `garage61-launcher.exe`), and a shortcut
+points at the truth.
+
+The two SimPro generations are separate entries because a lot of machines have both.
+**SimPro Manager 2 is detected but left unticked** — starting two wheelbase managers at
+once helps nobody. Tick it and untick 3 if you want the old one instead.
 
 Anything not in the catalog goes in through **Add…**. The catalog is a convenience, not a
 limit.

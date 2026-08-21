@@ -35,13 +35,34 @@ CATALOG = [
         'delay': 3,
     },
     {
-        'name': 'SimPro Manager',
-        'process': 'SimProManager.exe',
-        'registry': ['SimPro Manager', 'SimPro'],
-        'shortcut': ['SimPro Manager', 'SimPro'],
-        'exe': ['SimProManager.exe'],
-        'paths': [r'%ProgramFiles%\SimPro*', r'%ProgramFiles(x86)%\SimPro*'],
+        # SimPro Manager 3 is a Simagic daemon plus a CEF front end. The Start
+        # Menu shortcut launches simdaemon.exe with its working directory set to
+        # Simpro3\bin, and the daemon brings up simpro3.exe — so both names have
+        # to count as "running". Deliberately no `registry` entry: that key's
+        # DisplayIcon points at the daemon without the working directory, and
+        # the registry pass would win before the shortcut is ever consulted.
+        'name': 'SimPro Manager 3',
+        'process': 'simpro3.exe, simdaemon.exe',
+        'shortcut': ['SimPro Manager 3'],
+        'exe': ['simpro3.exe'],
+        'paths': [r'%ProgramFiles(x86)%\SIMAGIC\Simpro3\bin',
+                  r'%ProgramFiles%\SIMAGIC\Simpro3\bin'],
         'delay': 3,
+    },
+    {
+        # The previous generation, still installed alongside 3 on plenty of
+        # machines — hence off by default, since starting two wheelbase managers
+        # at once helps nobody. Only the registry DisplayName separates the two
+        # cleanly ("simpro SimProV2.1.8…" against "Simpro3 SimProV3.2.0…"); the
+        # install directory and exe are both just "simpro".
+        'name': 'SimPro Manager 2',
+        'process': 'simpro.exe',
+        'registry': ['SimProV2'],
+        'shortcut': ['SimPro Manager'],
+        'exe': ['simpro.exe'],
+        'paths': [r'%ProgramFiles(x86)%\simpro\bin', r'%ProgramFiles%\simpro\bin'],
+        'delay': 3,
+        'enabled': False,
     },
     {
         'name': 'SimHub',

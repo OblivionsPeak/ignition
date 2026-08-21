@@ -208,13 +208,19 @@ def detect(entry, shortcuts=None, registry=None):
                     return _row(entry, Path(expand(icon)), '')
 
     # 2. Start Menu shortcut — the most reliable signal, and the reason a
-    #    wrong guess at an exe name in the catalog isn't fatal
-    for want in entry.get('shortcut', []):
-        for s in shortcuts:
-            if low(want) in low(s.get('Name')):
-                target = s.get('Target') or s.get('Link') or ''
-                if target and Path(target).exists():
-                    return _row(entry, Path(target), s.get('Args', ''), s.get('Work', ''))
+    #    wrong guess at an exe name in the catalog isn't fatal.
+    #    Exact names are tried before substrings: "SimPro Manager" is a
+    #    substring of "SimPro Manager 3", and whichever the Start Menu happened
+    #    to enumerate first would otherwise decide which generation launches.
+    for exact in (True, False):
+        for want in entry.get('shortcut', []):
+            for s in shortcuts:
+                name = low(s.get('Name'))
+                if (low(want) == name) if exact else (low(want) in name):
+                    target = s.get('Target') or s.get('Link') or ''
+                    if target and Path(target).exists():
+                        return _row(entry, Path(target), s.get('Args', ''),
+                                    s.get('Work', ''))
 
     # 3. known install paths
     hit = _find_exe_under(entry.get('paths', []), entry.get('exe', []))
