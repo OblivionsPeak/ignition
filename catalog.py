@@ -144,6 +144,15 @@ CATALOG = [
         'delay': 1,
     },
     {
+        # PyInstaller build, so the exe is CamelCase while the repo is hyphenated.
+        'name': 'Track Temp Overlay',
+        'process': 'TrackTempOverlay.exe',
+        'shortcut': ['Track Temp Overlay', 'track-temp-overlay'],
+        'exe': ['TrackTempOverlay.exe'],
+        'paths': [r'%USERPROFILE%\track-temp-overlay\dist', r'%USERPROFILE%\track-temp-overlay'],
+        'delay': 1,
+    },
+    {
         'name': 'Discord',
         'process': 'Discord.exe',
         'registry': ['Discord'],
